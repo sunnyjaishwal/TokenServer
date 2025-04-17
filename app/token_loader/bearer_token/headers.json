@@ -1,0 +1,16 @@
+{
+    "accept": "application/json",
+    "accept-language": "en-US,en;q=0.9",
+    "content-type": "application/x-www-form-urlencoded",
+    "origin": "https://digital.etihad.com",
+    "priority": "u=1, i",
+    "referer": "https://digital.etihad.com/",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "x-d-token": "3:pe2KX9qARslsk5JWaLUvqg==:OckoexWSBSOT5tEwXUHC/18Dnlm0Ks7q9VJzrp5oO+x1BaBl8VlRT02F/8gz1oeYyR4iMfVv36WNU5kEAm1Bt/VxJs76bDFCCisjIipsmgKuGuw+qSJ2CUGCJscqWudyZFSS40RT622HQLZEqVlHKNldifMVVSk0Xvuoc0NZNlhOH4kKwse2NCogA2Jo8MfIFcHY+lachGAazBk31nMeYwbch9WCZ7UsvDqYITsFV9kRoI6o64XjtyRx4sRvpDSv+T4Bq8mgq+zVuQ6huBYrxvSnAVseZZpuEiO2SkfVdTU1sz1H/JkWzdvcbnMEsib5lqOM2zUprYc0z9hnBrMeiPqwJaoJqYVibSNkBzMc8zRjky6LVIo5kUVj4Be9Aks+XJtm2ypd+VcGyXLWTJlEpK/aE51zhXPmc0/dy5i5NsBwd2QilID0vURfIL5xQJOYo8qyBn6hVQ4z9//efZIjj9du1pQgoAGCIY3NEQqtnRAj1FNqW8HjI0nad6SI+8SR+SdzMrZVikFKWwbMMH0zowUq93XwYgkhExfj/zgBmICbgc9UlI/7swGq/0cQJhxoFUSkXnUR1q6JVrblm/tAQAfGriPLZ4KusR6tt3UwLAvM75vkYV984zzIchWdmyQs8opoHe4qIfCXcou8ClQ6tqK0s/VRe2FuIP9DTo3x6yLPv5VDxKIDe54OXiDDfLzLjBT2VsZaInHU2eTnK1OhUPiHg5VHlfxwvMd5fR/PIlDJkeQ1EbGo0VwFw1ah8WeftQ+lqo4cotSmsEXMiRyvE4CqWi7HErpXdy1FsoHv6ipOZGqRleEF2W9Gwt4gV4a+k8Q6dU0CbG0OzNfjxyPLOBkdkpDfPUx8f4jlcnKY9eKnZCFUJxvngDRcf8TvWUxluz0gnU02C5qbJ8SLOJxhbw==:o+HGaM6pT/2uU6SeTEyh9GcbQeMu94SBVV98f+OefF0="
+}
