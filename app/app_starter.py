@@ -6,6 +6,9 @@ import os
 from core.scheduler import Scheduler
 from load_all_token import LoadToken
 
+
+
+
 class AppStarter:
     
     def __init__(self):
@@ -31,8 +34,8 @@ class AppStarter:
     def run(self):
         print("Application Started")
         self.setup_logging()
-       # self.load_token_obj.load_all_token()
-       # time.sleep(600)
+        self.load_token_obj.load_all_token()
+        time.sleep(600)
         self.scheduler_obj.run_scheduler()      
         
 if __name__ == '__main__':
