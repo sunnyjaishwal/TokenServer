@@ -1,5 +1,6 @@
 '''
 '''
+import time
 from core.redis_manager import RedisManager
 from token_loader.bearer_token.bearer_token_loader import BearerToken
 from token_loader.xd_token.xd_token_loader import XDTokenLoader
@@ -30,11 +31,13 @@ class TokenManager:
                 self.logger.info(f"XD token got expired of - {p_key}")
                 if bearer_token is None:
                     self.logger.info(f"Both XD and Bearer got expired so generating new for {p_key} and {xd_key}")
+                    time.sleep(4)
                     self.xd_obj.fetch_xd_token(index)
+                    time.sleep(4)
                     self.bearer_obj.fetch_bearer_token(index)
-                elif self.redis_obj.get_expiry_time(xd_key) > 180:
+                elif self.redis_obj.get_expiry_time(xd_key) > 600:
                     self.logger.info(f"Generating xd token for this bearer token {xd_key}")
                     self.xd_obj.fetch_xd_token(index)
                 else:
-                    self.logger.info(f"Bearer token will get expire within 3 min with {xd_key}")
+                    self.logger.info(f"Bearer token will get expire within 10 min with {xd_key}")
                     
