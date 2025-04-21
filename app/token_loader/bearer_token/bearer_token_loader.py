@@ -32,12 +32,12 @@ class BearerToken:
                 timeout=10
             )
         if response.status_code == 403 :
-            self.logger.error("unable to fetch access token")
+            self.logger.error(f"Unable to fetch access token using {self.p_key}")
         else:
             responses= response.json()
             key= 'xd_token_'+str(count+1)
             value= responses.get('access_token')
             expiry= int(responses.get('expires_in'))
             self.redis_obj.set_cache_data(key, int(expiry), str(value))
-            self.logger.info("bearer token has been fetched and set in redis")
+            self.logger.info(f"Bearer token has been fetched and set in redis as {key}")
     

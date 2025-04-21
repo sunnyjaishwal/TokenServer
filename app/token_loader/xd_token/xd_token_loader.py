@@ -35,13 +35,13 @@ class XDTokenLoader:
                 timeout= 10
             )   
         if response.status_code == 200:
-            self.logger.info(f"X-d token fetched - {response.status_code}")
+            self.logger.info(f"X-d token fetched - {response.status_code} for {count+1}")
             responses = response.json()
             key= 'p_token_'+str(count+1)
             value = responses.get('token')
             expiry = int(responses.get('renewInSec'))
             self.redis_object.set_cache_data(key, int(expiry), str(value))
-            self.logger.info("successfully set xd token to redis")
+            self.logger.info(f"successfully set xd token to redis as {key}")
         else:
             self.logger.error(f"Unable to fetch xd, problem with p-token - {response.status_code}")
             

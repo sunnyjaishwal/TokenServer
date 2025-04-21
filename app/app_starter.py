@@ -32,7 +32,7 @@ class AppStarter:
         print("Application Started")
         self.setup_logging()
        # self.load_token_obj.load_all_token()
-        #time.sleep(600)
+       # time.sleep(600)
         self.scheduler_obj.run_scheduler()      
         
 if __name__ == '__main__':
