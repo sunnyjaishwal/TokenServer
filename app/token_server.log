@@ -648,3 +648,5 @@
 2025-04-21 16:16:44,300 - __main__ - INFO - X-d token fetched - 200 for 50
 2025-04-21 16:16:44,316 - __main__ - INFO - successfully set xd token to redis as p_token_50
 2025-04-21 16:16:44,812 - __main__ - INFO - Bearer token has been fetched and set in redis as xd_token_50
+2025-04-21 17:39:05,362 - __main__ - INFO - Logging initialized. Logs will be written to the root file and console.
+2025-04-21 17:39:05,362 - __main__ - INFO - Scheduler Started
