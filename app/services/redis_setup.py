@@ -16,7 +16,7 @@ class RedisSetup:
             cls._instance = super(RedisSetup, cls).__new__(cls)
         return cls._instance
 
-    def __init__(self, logger,host='localhost', port=8084, db=0):
+    def __init__(self, logger,host='redis', port=6379, db=0):
         self.logger = logger
         self.host = host
         self.port = port

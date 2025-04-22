@@ -5,3 +5,5 @@ httpx
 pydantic
 apscheduler
 python-dotenv
+schedule
+requests

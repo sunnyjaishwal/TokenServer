@@ -650,3 +650,63 @@
 2025-04-21 16:16:44,812 - __main__ - INFO - Bearer token has been fetched and set in redis as xd_token_50
 2025-04-21 17:39:05,362 - __main__ - INFO - Logging initialized. Logs will be written to the root file and console.
 2025-04-21 17:39:05,362 - __main__ - INFO - Scheduler Started
+2025-04-21 18:50:42,389 - __main__ - INFO - Logging initialized. Logs will be written to the root file and console.
+2025-04-21 18:50:42,389 - __main__ - INFO - Token Loading to cache started
+2025-04-21 18:50:42,831 - __main__ - INFO - X-d token fetched - 200 for 1
+2025-04-21 18:50:42,836 - __main__ - INFO - Cache data set successfully for key: p_token_1
+2025-04-21 18:50:42,836 - __main__ - INFO - successfully set xd token to redis as p_token_1
+2025-04-21 18:55:47,723 - __main__ - INFO - Logging initialized. Logs will be written to the root file and console.
+2025-04-21 18:55:47,723 - __main__ - INFO - Token Loading to cache started
+2025-04-21 18:55:48,064 - __main__ - INFO - X-d token fetched - 200 for 1
+2025-04-21 18:55:48,070 - __main__ - INFO - Cache data set successfully for key: p_token_1
+2025-04-21 18:55:48,071 - __main__ - INFO - successfully set xd token to redis as p_token_1
+2025-04-21 18:55:51,196 - __main__ - ERROR - Unable to fetch access token using p_token_1
+2025-04-21 18:55:51,417 - __main__ - INFO - X-d token fetched - 200 for 2
+2025-04-21 18:55:51,423 - __main__ - INFO - Cache data set successfully for key: p_token_2
+2025-04-21 18:55:51,424 - __main__ - INFO - successfully set xd token to redis as p_token_2
+2025-04-21 18:55:54,527 - __main__ - ERROR - Unable to fetch access token using p_token_2
+2025-04-21 18:55:54,795 - __main__ - INFO - X-d token fetched - 200 for 3
+2025-04-21 18:55:54,801 - __main__ - INFO - Cache data set successfully for key: p_token_3
+2025-04-21 18:55:54,802 - __main__ - INFO - successfully set xd token to redis as p_token_3
+2025-04-21 18:55:57,909 - __main__ - ERROR - Unable to fetch access token using p_token_3
+2025-04-21 18:55:58,217 - __main__ - INFO - X-d token fetched - 200 for 4
+2025-04-21 18:55:58,224 - __main__ - INFO - Cache data set successfully for key: p_token_4
+2025-04-21 18:55:58,225 - __main__ - INFO - successfully set xd token to redis as p_token_4
+2025-04-21 18:56:01,315 - __main__ - ERROR - Unable to fetch access token using p_token_4
+2025-04-21 18:56:01,611 - __main__ - INFO - X-d token fetched - 200 for 5
+2025-04-21 18:56:01,613 - __main__ - INFO - Cache data set successfully for key: p_token_5
+2025-04-21 18:56:01,613 - __main__ - INFO - successfully set xd token to redis as p_token_5
+2025-04-21 18:56:04,822 - __main__ - ERROR - Unable to fetch access token using p_token_5
+2025-04-21 18:56:05,056 - __main__ - INFO - X-d token fetched - 200 for 6
+2025-04-21 18:56:05,063 - __main__ - INFO - Cache data set successfully for key: p_token_6
+2025-04-21 18:56:05,064 - __main__ - INFO - successfully set xd token to redis as p_token_6
+2025-04-21 18:56:08,313 - __main__ - ERROR - Unable to fetch access token using p_token_6
+2025-04-21 18:56:08,660 - __main__ - INFO - X-d token fetched - 200 for 7
+2025-04-21 18:56:08,667 - __main__ - INFO - Cache data set successfully for key: p_token_7
+2025-04-21 18:56:08,668 - __main__ - INFO - successfully set xd token to redis as p_token_7
+2025-04-21 18:56:11,854 - __main__ - ERROR - Unable to fetch access token using p_token_7
+2025-04-21 18:56:12,101 - __main__ - INFO - X-d token fetched - 200 for 8
+2025-04-21 18:56:12,104 - __main__ - INFO - Cache data set successfully for key: p_token_8
+2025-04-21 18:56:12,104 - __main__ - INFO - successfully set xd token to redis as p_token_8
+2025-04-21 18:56:15,269 - __main__ - ERROR - Unable to fetch access token using p_token_8
+2025-04-21 18:56:15,551 - __main__ - INFO - X-d token fetched - 200 for 9
+2025-04-21 18:56:15,559 - __main__ - INFO - Cache data set successfully for key: p_token_9
+2025-04-21 18:56:15,559 - __main__ - INFO - successfully set xd token to redis as p_token_9
+2025-04-21 18:56:18,735 - __main__ - ERROR - Unable to fetch access token using p_token_9
+2025-04-21 18:56:19,066 - __main__ - INFO - X-d token fetched - 200 for 10
+2025-04-21 18:56:19,071 - __main__ - INFO - Cache data set successfully for key: p_token_10
+2025-04-21 18:56:19,072 - __main__ - INFO - successfully set xd token to redis as p_token_10
+2025-04-21 18:56:22,233 - __main__ - ERROR - Unable to fetch access token using p_token_10
+2025-04-21 18:56:22,598 - __main__ - INFO - X-d token fetched - 200 for 11
+2025-04-21 18:56:22,602 - __main__ - INFO - Cache data set successfully for key: p_token_11
+2025-04-21 18:56:22,602 - __main__ - INFO - successfully set xd token to redis as p_token_11
+2025-04-22 11:21:34,148 - app_starter - INFO - Logging initialized. Logs will be written to the root file and console.
+2025-04-22 11:21:34,154 - app_starter - INFO - Redis client created successfully.
+2025-04-22 11:21:39,474 - app_starter - WARNING - Cache data not found for key: p_token_18: xd_token_18. Retrying...
+2025-04-22 11:24:33,475 - app_starter - INFO - Logging initialized. Logs will be written to the root file and console.
+2025-04-22 11:24:33,481 - app_starter - INFO - Redis client created successfully.
+2025-04-22 11:24:36,874 - app_starter - WARNING - Cache data not found for key: p_token_6: xd_token_6. Retrying...
+2025-04-22 11:24:56,513 - app_starter - INFO - Logging initialized. Logs will be written to the root file and console.
+2025-04-22 11:24:56,517 - app_starter - INFO - Redis client created successfully.
+2025-04-22 11:25:02,066 - app_starter - WARNING - Cache data not found for key: p_token_43: xd_token_43. Retrying...
+2025-04-22 11:25:04,666 - app_starter - WARNING - Cache data not found for key: p_token_27: xd_token_27. Retrying...

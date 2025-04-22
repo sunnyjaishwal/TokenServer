@@ -3,7 +3,7 @@ This script initializes the application by setting up logging and starting the s
 It imports necessary modules, defines the Scheduler class, and contains methods for logging setup and running the application.
 '''
 import schedule
-from app.core.token_manager import TokenManager
+from core.token_manager import TokenManager
 
 class Scheduler:
     '''

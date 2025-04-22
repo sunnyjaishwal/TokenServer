@@ -5,7 +5,7 @@ It imports necessary modules, defines the AppStarter class, and contains methods
 import time
 import logging
 import os
-from scheduler import Scheduler
+from core.scheduler import Scheduler
 from load_all_token import LoadToken
 
 
@@ -19,7 +19,7 @@ class AppStarter:
     
     def __init__(self):
         self.logger = logging.getLogger(__name__)
-        self.scheduler_obj = Scheduler()
+        self.scheduler_obj = Scheduler(self.logger)
         self.load_token_obj= LoadToken(self.logger)
         
     def setup_logging(self):

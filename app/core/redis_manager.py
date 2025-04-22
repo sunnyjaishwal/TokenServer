@@ -29,14 +29,17 @@ class RedisManager:
         except Exception as e:
             self.logger.error(f"Failed to set cache data for key: {key}. Error: {e}")
 
-    def get_cache_data(self) -> Optional[Tuple[Optional[bytes], Optional[bytes]]]:
+    def get_cache_data(self, key) :
+        return self.client.get(key)
+
+    def get_cached_token_data(self):
         """
-        Retrieve cache data using the key.
+        Retrieve cache data.
         Returns a tuple of tokens if found, or None if not.
         """
         try:
             number = random.randint(1, 51)
-            p_token, xd_token = getattr(Mapping, f"p_token_{number}")
+            p_token, xd_token = f"p_token_{number}", f"xd_token_{number}"
 
             x_d_token = self.client.get(p_token)
             access_token = self.client.get(xd_token)
@@ -48,7 +51,7 @@ class RedisManager:
                 self.logger.warning(f"Cache data not found for key: {p_token}: {xd_token}. Retrying...")
                 # Retry once with a new random number
                 number = random.randint(1, 51)
-                p_token, xd_token = getattr(Mapping, f"p_token_{number}")
+                p_token, xd_token = f"p_token_{number}", f"xd_token_{number}"
                 return self.client.get(p_token), self.client.get(xd_token)
 
         except Exception as e:
