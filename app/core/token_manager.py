@@ -19,14 +19,6 @@ class TokenManager:
             xd_key='xd_token_'+str(index+1)
             xd_token= self.redis_obj.get_cache_data(p_key)
             bearer_token= self.redis_obj.get_cache_data(xd_key)
-            # if xd_token:
-            #     if self.redis_obj.get_expiry_time(p_key) > 180:
-            #         if bearer_token is None:
-            #             self.logger.info(f"xd token is their for {p_key} but bearer token expired for {xd_key}")
-            #             self.bearer_obj.fetch_bearer_token(index)
-                        #self.logger.info(f"Generated new bearer token for this xd {p_key}")
-                    # if self.redis_obj.get_expiry_time(xd_key) < 2:
-                    #     self.logger.info(f"XD {p_key} will get expired within 2 min")
             if xd_token is None:
                 self.logger.info(f"XD token got expired of - {p_key}")
                 if bearer_token is None:
