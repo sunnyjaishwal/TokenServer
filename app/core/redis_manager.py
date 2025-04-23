@@ -38,7 +38,7 @@ class RedisManager:
         Returns a tuple of tokens if found, or None if not.
         """
         try:
-            number = random.randint(1, 51)
+            number = random.randint(1, 76)
             p_token, xd_token = f"p_token_{number}", f"xd_token_{number}"
 
             x_d_token = self.client.get(p_token)

@@ -20,7 +20,7 @@ class Scheduler:
         Run the scheduler to execute tasks at specified intervals.
         '''
         self.logger.info("Scheduler Started")
-        schedule.every(2).minutes.do(self.token_manager.refresh_token)
+        schedule.every(20).seconds.do(self.token_manager.refresh_token)
         
         while True:
             schedule.run_pending()

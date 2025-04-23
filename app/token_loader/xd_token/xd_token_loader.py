@@ -10,6 +10,7 @@ from core.redis_manager import RedisManager
 class XDTokenLoader:
     
     def __init__(self,logger):
+        self.expiry=None
         self.logger=logger
         self.payload= None
         self.header= None
@@ -39,10 +40,13 @@ class XDTokenLoader:
             responses = response.json()
             key= 'p_token_'+str(count+1)
             value = responses.get('token')
-            expiry = int(responses.get('renewInSec'))
-            self.redis_object.set_cache_data(key, int(expiry), str(value))
+            self.expiry = int(responses.get('renewInSec'))
+            self.redis_object.set_cache_data(key, int(self.expiry), str(value))
             self.logger.info(f"successfully set xd token to redis as {key}")
         else:
             self.logger.error(f"Unable to fetch xd, problem with p-token - {response.status_code}")
+    
+    def get_xd_expiry(self):
+        return self.expiry
             
       
