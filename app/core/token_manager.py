@@ -14,14 +14,13 @@ class TokenManager:
         self.xd_obj = XDTokenLoader(self.logger)
         
     def refresh_token(self):
-        for index in range(75):
+        for index in range(100):
             # p_key='p_token_'+str(index+1)
             # xd_key='xd_token_'+str(index+1)
-            self.xd_obj.fetch_xd_token(index)
-            time.sleep(1)
+            
             self.bearer_obj.fetch_bearer_token(index)
-            time.sleep(1)
-            if index == 74:
+            time.sleep(20)
+            if index == 99:
                 self.refresh_token()
             # xd_token= self.redis_obj.get_cache_data(p_key)
             # bearer_token= self.redis_obj.get_cache_data(xd_key)

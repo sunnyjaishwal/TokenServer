@@ -2,6 +2,7 @@
 This module 
 '''
 import requests
+import time
 import os
 import json
 from core.redis_manager import RedisManager
@@ -19,6 +20,9 @@ class BearerToken:
         self.p_key=None
     
     def fetch_bearer_token(self,count):
+        xd_response = self.xd_obj.fetch_xd_token(count)
+        xd_expiry= int(xd_response.get('renewInSec')) 
+        time.sleep(1)
         try:
             file_path= os.path.join("token_loader","bearer_token","headers.json")
             with open(file_path, "r") as h:
@@ -40,8 +44,8 @@ class BearerToken:
             key= 'xd_token_'+str(count+1)
             value= responses.get('access_token')
             #expiry= int(responses.get('expires_in'))
-            expiry= self.xd_obj.get_xd_expiry()
-            print(expiry)#setting xd expiry time for access token
+            expiry= xd_expiry
+           
             self.redis_obj.set_cache_data(key, int(expiry), str(value))
             self.logger.info(f"Bearer token has been fetched and set in redis as {key}")
     

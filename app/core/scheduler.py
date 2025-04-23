@@ -3,6 +3,7 @@ This script initializes the application by setting up logging and starting the s
 It imports necessary modules, defines the Scheduler class, and contains methods for logging setup and running the application.
 '''
 import schedule
+import time
 from core.token_manager import TokenManager
 
 class Scheduler:
@@ -24,4 +25,5 @@ class Scheduler:
         
         while True:
             schedule.run_pending()
+            time.sleep(1)
             

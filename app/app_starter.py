@@ -7,7 +7,7 @@ import logging
 import os
 from core.scheduler import Scheduler
 from load_all_token import LoadToken
-
+from core.token_manager import TokenManager
 
 
 
@@ -21,6 +21,7 @@ class AppStarter:
         self.logger = logging.getLogger(__name__)
         self.scheduler_obj = Scheduler(self.logger)
         self.load_token_obj= LoadToken(self.logger)
+        self.token_manager_obj= TokenManager(self.logger)
         
     def setup_logging(self):
         """
@@ -44,9 +45,10 @@ class AppStarter:
         """
         print("Application Started")
         self.setup_logging()
-        self.load_token_obj.load_all_token()
-        time.sleep(600)
-        self.scheduler_obj.run_scheduler()      
+        # self.load_token_obj.load_all_token()
+        # time.sleep(600)
+       # self.scheduler_obj.run_scheduler()  
+        self.token_manager_obj.refresh_token()   
         
 if __name__ == '__main__':
     ob = AppStarter()

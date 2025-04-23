@@ -43,10 +43,10 @@ class XDTokenLoader:
             self.expiry = int(responses.get('renewInSec'))
             self.redis_object.set_cache_data(key, int(self.expiry), str(value))
             self.logger.info(f"successfully set xd token to redis as {key}")
+            return responses
         else:
             self.logger.error(f"Unable to fetch xd, problem with p-token - {response.status_code}")
     
-    def get_xd_expiry(self):
-        return self.expiry
+   
             
       
