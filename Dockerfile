@@ -1,18 +1,15 @@
-# Use an official Python runtime as a parent image
-FROM python:alpine3.20
-# Set environment variables to prevent Python from writing .pyc files and to ensure output is flushed immediately
+# Dockerfile
+FROM python:3.11-slim
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container
-COPY . /app
+COPY ./app /app
+COPY ./requirements.txt /app/requirements.txt
+COPY ./supervisord.conf /etc/supervisord.conf
 
-# Install dependencies
-RUN pip install --no-cache-dir fastapi uvicorn redis
+RUN pip install --no-cache-dir -r requirements.txt \
+    && apt-get update && apt-get install -y supervisor
 
-# Expose the port FastAPI will run on
 EXPOSE 8000
 
-# Command to run the FastAPI application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]
