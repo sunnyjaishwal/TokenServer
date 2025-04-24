@@ -23,11 +23,14 @@ class XDTokenLoader:
             p_token_file= os.path.join("token_loader","xd_token","p_tokens.json")
             with open(p_token_file, "r", encoding='utf-8') as p:
                 self.payload= json.load(p)
+        except:
+            self.logger.error("P Token file not loaded")
+        try:
             header_file_path= os.path.join("token_loader","xd_token","headers.json")
             with open(header_file_path, "r", encoding='utf-8') as h:
                 self.header= json.load(h)
         except:
-            print("file not loaded")
+            self.logger.error("header file not loaded")
         self.body= json.dumps(self.payload[count].get('p_token_'+str(count+1)))        
         response= requests.post(
                 url=self.api_url,
