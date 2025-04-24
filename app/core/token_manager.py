@@ -12,13 +12,36 @@ class TokenManager:
         self.redis_obj= RedisManager(self.logger)
         self.bearer_obj = BearerToken(self.logger)
         self.xd_obj = XDTokenLoader(self.logger)
+        self.xd_token = None
+        self.bearer_token = None
+    
+    def get_tokens(self,count):
+        try:
+            xd_response = self.xd_obj.fetch_xd_token(count)
+            self.xd_token= xd_response.get('token')
+            
+            if self.xd_token:
+                access_response = self.bearer_obj.fetch_bearer_token(self.xd_token)
+                if not access_response:
+                    self.logger.error(f"Unable to generate Bearer token for token - {count}")
+                self.bearer_token = access_response.get('access_token')
+                xd_expiry_time = int(xd_response.get('renewInSec'))
+                value = [self.xd_token, self.bearer_token]
+                key= f"P_Token_{count+1}"
+                self.redis_obj.set_cache_data(key, int(xd_expiry_time), str(value))
+            else:
+                self.logger.error(f"Unable to generate X-D-Token for token - {count}")
+            
+        except Exception as e:
+            self.logger.error(f"Error occurred while Bearer tokens: {e}")
+        
         
     def refresh_token(self):
         for index in range(100):
             # p_key='p_token_'+str(index+1)
             # xd_key='xd_token_'+str(index+1)
             
-            self.bearer_obj.fetch_bearer_token(index)
+            self.get_tokens(index)
             time.sleep(20)
             if index == 99:
                 self.refresh_token()

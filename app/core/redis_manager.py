@@ -6,6 +6,7 @@ import random
 from services.redis_setup import RedisSetup
 from models.constant import Mapping
 from typing import Optional, Tuple
+from fastapi import HTTPException
 
 
 class RedisManager:
@@ -29,48 +30,48 @@ class RedisManager:
         except Exception as e:
             self.logger.error(f"Failed to set cache data for key: {key}. Error: {e}")
 
-    def get_cache_data(self, key) :
-        return self.client.get(key)
+    # def get_cache_data(self, key) :
+    #     return self.client.get(key)
 
     def get_cached_token_data(self):
         """
         Retrieve cache data.
         Returns a tuple of tokens if found, or None if not.
         """
+       
         try:
-            number = random.randint(1, 76)
-            p_token, xd_token = f"p_token_{number}", f"xd_token_{number}"
+            for attempt in range(3):
+                key = self.client.randomkey()
+                # p_token, xd_token = f"p_token_{number}", f"xd_token_{number}"
+                # x_d_token = self.client.get(p_token)
+                # access_token = self.client.get(xd_token)
+                token = self.client.get(key)
 
-            x_d_token = self.client.get(p_token)
-            access_token = self.client.get(xd_token)
-
-            if x_d_token and access_token:
-                self.logger.info(f"Cache data retrieved successfully for key: {p_token}: {xd_token}")
-                return x_d_token, access_token
-            else:
-                self.logger.warning(f"Cache data not found for key: {p_token}: {xd_token}. Retrying...")
-                # Retry once with a new random number
-                number = random.randint(1, 51)
-                p_token, xd_token = f"p_token_{number}", f"xd_token_{number}"
-                return self.client.get(p_token), self.client.get(xd_token)
-
+                if token:
+                    self.logger.info(f"Cache data retrieved successfully for key: {token}")
+                    return token
+                else:
+                    self.logger.warning(f"Attempt {attempt + 1}: Cache data not found for key: {token}. Retrying...")
+                
         except Exception as e:
-            self.logger.error(f"Failed to retrieve cache data for key: {p_token}:{xd_token}. Error: {e}")
-            return None
+            self.logger.error(f"All three attempts failed to retrieve cache data Error: {e}")
+            raise HTTPException(status_code=400, detail=str(e))
 
-    def get_expiry_time(self, key: str) -> Optional[int]:
-        """
-        Get the expiry time of cache data using the key.
-        Returns the time-to-live (TTL) in seconds, or None if the key does not exist.
-        """
-        try:
-            ttl = self.client.ttl(key)
-            if ttl != -2:  # -2 indicates the key does not exist
-                self.logger.info(f"Expiry time for key {key}: {ttl} seconds")
-                return ttl
-            else:
-                self.logger.warning(f"No expiry time found for key: {key}")
-                return None
-        except Exception as e:
-            self.logger.error(f"Failed to get expiry time for key: {key}. Error: {e}")
-            return None
+    # def get_expiry_time(self, key: str) -> Optional[int]:
+    #     """
+    #     Get the expiry time of cache data using the key.
+    #     Returns the time-to-live (TTL) in seconds, or None if the key does not exist.
+    #     """
+    #     try:
+    #         ttl = self.client.ttl(key)
+    #         if ttl != -2:  # -2 indicates the key does not exist
+    #             self.logger.info(f"Expiry time for key {key}: {ttl} seconds")
+    #             return ttl
+    #         else:
+    #             self.logger.warning(f"No expiry time found for key: {key}")
+    #             return None
+    #     except Exception as e:
+    #         self.logger.error(f"Failed to get expiry time for key: {key}. Error: {e}")
+    #         return None
+        
+    

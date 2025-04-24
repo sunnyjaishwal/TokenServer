@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import uuid
 import json
+import ast
 
 from fastapi.responses import JSONResponse
 from app_starter import AppStarter
@@ -18,12 +19,13 @@ def generate_tokens():
     """
     Generate and return a unique token.
     """
-    x_d_token, access_token = redis_manager.get_cached_token_data()
+    token = redis_manager.get_cached_token_data()
+    token= ast.literal_eval(token)
     return JSONResponse(
         content={
             "tokens": {
-                "x_d_token": x_d_token, 
-                "access_token": access_token
+                "x_d_token": token[0], 
+                "access_token": token[1]
                 }
             }
     )
