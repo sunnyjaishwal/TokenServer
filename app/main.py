@@ -1,11 +1,7 @@
 from fastapi import FastAPI
-import uuid
-import json
 import ast
-
 from fastapi.responses import JSONResponse
 from app_starter import AppStarter
-
 from core.redis_manager import RedisManager
 
 app = FastAPI()

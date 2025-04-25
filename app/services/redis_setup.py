@@ -3,7 +3,9 @@ This module provides a singleton-based Redis client setup using the redis-py lib
 It ensures only one Redis connection is established and reused across the application.
 '''
 import redis
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 class RedisSetup:
     '''
     Singleton class to manage Redis Client connection
@@ -18,10 +20,9 @@ class RedisSetup:
 
     def __init__(self, logger,host='redis', port=6379, db=0):
         self.logger = logger
-        self.host = host
-        self.port = port
+        self.host = os.getenv('REDIS_HOST')
+        self.port = int(os.getenv('REDIS_PORT'))
         self.db = db
-        # self.password = 'your_secure_password_here'
         RedisSetup._client = self.create_client()
 
     def create_client(self):
@@ -34,7 +35,6 @@ class RedisSetup:
             client = redis.Redis(host=self.host,
                                  port=self.port,
                                  db=self.db,
-                                #  password= self.password,
                                  decode_responses=True
                     )
             client.ping()  # Test the connection

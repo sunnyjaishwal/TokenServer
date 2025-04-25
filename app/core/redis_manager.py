@@ -8,7 +8,6 @@ from models.constant import Mapping
 from typing import Optional, Tuple
 from fastapi import HTTPException
 
-
 class RedisManager:
     """
     RedisManager class for managing all cache data.
@@ -30,23 +29,15 @@ class RedisManager:
         except Exception as e:
             self.logger.error(f"Failed to set cache data for key: {key}. Error: {e}")
 
-    # def get_cache_data(self, key) :
-    #     return self.client.get(key)
-
     def get_cached_token_data(self):
         """
         Retrieve cache data.
         Returns a tuple of tokens if found, or None if not.
         """
-       
         try:
             for attempt in range(3):
                 key = self.client.randomkey()
-                # p_token, xd_token = f"p_token_{number}", f"xd_token_{number}"
-                # x_d_token = self.client.get(p_token)
-                # access_token = self.client.get(xd_token)
                 token = self.client.get(key)
-
                 if token:
                     self.logger.info(f"Cache data retrieved successfully")
                     return token

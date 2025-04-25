@@ -10,9 +10,15 @@ services:
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
+    env_file:
+      - .env
+
 
   redis:
     image: redis:7-alpine
     command: ["redis-server", "--port", "6379"]
     ports:
       - "6379:6379"
+    env_file:
+        - .env
+ 
