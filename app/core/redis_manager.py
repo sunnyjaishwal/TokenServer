@@ -48,30 +48,13 @@ class RedisManager:
                 token = self.client.get(key)
 
                 if token:
-                    self.logger.info(f"Cache data retrieved successfully for key: {token}")
+                    self.logger.info(f"Cache data retrieved successfully")
                     return token
                 else:
-                    self.logger.warning(f"Attempt {attempt + 1}: Cache data not found for key: {token}. Retrying...")
+                    self.logger.warning(f"Attempt {attempt + 1}: Cache data not found. Retrying...")
                 
         except Exception as e:
             self.logger.error(f"All three attempts failed to retrieve cache data Error: {e}")
             raise HTTPException(status_code=400, detail=str(e))
 
-    # def get_expiry_time(self, key: str) -> Optional[int]:
-    #     """
-    #     Get the expiry time of cache data using the key.
-    #     Returns the time-to-live (TTL) in seconds, or None if the key does not exist.
-    #     """
-    #     try:
-    #         ttl = self.client.ttl(key)
-    #         if ttl != -2:  # -2 indicates the key does not exist
-    #             self.logger.info(f"Expiry time for key {key}: {ttl} seconds")
-    #             return ttl
-    #         else:
-    #             self.logger.warning(f"No expiry time found for key: {key}")
-    #             return None
-    #     except Exception as e:
-    #         self.logger.error(f"Failed to get expiry time for key: {key}. Error: {e}")
-    #         return None
-        
     
