@@ -17,6 +17,9 @@ class RedisManager:
         self.logger = logger
         self.redis_obj = RedisSetup(self.logger)
         self.client = self.redis_obj.get_client()
+        
+    def get_key_count(self):
+        return self.client.dbsize()
 
     def set_cache_data(self, key: str, expiry: int, value: str) -> None:
         """

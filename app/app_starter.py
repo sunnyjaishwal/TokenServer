@@ -4,8 +4,10 @@ It imports necessary modules, defines the AppStarter class, and contains methods
 '''
 import logging
 import os
-from load_all_token import LoadToken
+import time
+#from load_all_token import LoadToken
 from core.token_manager import TokenManager
+from schedule_bot import BotScheduler
 
 class AppStarter:
     """
@@ -15,8 +17,9 @@ class AppStarter:
     
     def __init__(self):
         self.logger = logging.getLogger(__name__)
-        self.load_token_obj= LoadToken(self.logger)
+        #self.load_token_obj= LoadToken(self.logger)
         self.token_manager_obj= TokenManager(self.logger)
+        self.bot_scheduler = BotScheduler(self.logger)
         
     def setup_logging(self):
         """
@@ -40,7 +43,10 @@ class AppStarter:
         """
         print("Application Started")
         self.setup_logging()  
-        self.token_manager_obj.refresh_token()   
+        self.token_manager_obj.load_first_time_token()  
+        time.sleep(360)
+        self.bot_scheduler.run_scheduler(self.token_manager_obj)
+        
         
 if __name__ == '__main__':
     ob = AppStarter()

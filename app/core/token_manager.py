@@ -23,25 +23,31 @@ class TokenManager:
             self.xd_token= xd_response.get('token')
             if self.xd_token:
                 access_response = self.bearer_obj.fetch_bearer_token(self.xd_token)
-                if not access_response:
+                if access_response:
+                    self.bearer_token = access_response.get('access_token')
+                    xd_expiry_time = int(xd_response.get('renewInSec'))
+                    value = [self.xd_token, self.bearer_token]
+                    key= f"P_Token_{count+1}"
+                    self.redis_obj.set_cache_data(key, int(xd_expiry_time), str(value))
+                else:
                     self.logger.error(f"Unable to generate Bearer token for token - {count+1}")
-                self.bearer_token = access_response.get('access_token')
-                xd_expiry_time = int(xd_response.get('renewInSec'))
-                value = [self.xd_token, self.bearer_token]
-                key= f"P_Token_{count+1}"
-                self.redis_obj.set_cache_data(key, int(xd_expiry_time), str(value))
             else:
                 self.logger.error(f"Unable to generate X-D-Token for token - {count+1}")
             
         except Exception as e:
-            self.logger.error(f"Error occurred while Bearer tokens: {e}")       
-        
-    def refresh_token(self):
-        for index in range(100):
+            self.logger.error(f"Error occurred while Bearer tokens: {e}")    
+            
+    def load_first_time_token(self):
+        for index in range(5):   
             self.get_tokens(index)
-            time.sleep(20)
-            if index == 99:
-                self.refresh_token()
+            time.sleep(60)
+    # def refresh_token(self):
+    #     for index in range(11):
+    #         self.get_tokens(index)
+    #         time.sleep(5)
+    #         if index == 10:
+    #             time.sleep(600)
+    #             self.refresh_token()
             # xd_token= self.redis_obj.get_cache_data(p_key)
             # bearer_token= self.redis_obj.get_cache_data(xd_key)
             

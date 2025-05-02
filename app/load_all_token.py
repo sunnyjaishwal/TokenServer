@@ -1,5 +1,6 @@
 '''
-
+It is used to load all 50 token 
+Its for future use
 '''
 import time
 from core.redis_manager import RedisManager
