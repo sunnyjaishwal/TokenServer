@@ -6,14 +6,17 @@ import time
 from core.redis_manager import RedisManager
 from token_loader.bearer_token.bearer_token_loader import BearerToken
 from token_loader.xd_token.xd_token_loader import XDTokenLoader
+from core.proxy_manager import ProxyManager
 
 class TokenManager:
     
     def __init__(self,logger):
         self.logger=logger
+        self.proxy_manager = ProxyManager(self.logger)
         self.redis_obj= RedisManager(self.logger)
-        self.bearer_obj = BearerToken(self.logger)
-        self.xd_obj = XDTokenLoader(self.logger)
+        self.bearer_obj = BearerToken(self.logger, self.proxy_manager)
+        self.xd_obj = XDTokenLoader(self.logger, self.proxy_manager)
+        
         self.xd_token = None
         self.bearer_token = None
     
